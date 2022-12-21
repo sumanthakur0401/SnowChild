@@ -1,0 +1,219 @@
+# SnowChild
+The purpose of SnowChild is to help you engage with people around the world without disclosing a space where user feels at home. -SnowChild is a voice, video and text communication service used by ones who want to distinguish from the world. -Java, XML and a creative mindset are used to create SnowChild.
+
+
+public class afterLogin extends AppCompatActivity {
+
+    Dialog dialog;
+    private ImageView myButton,upvote,thoughts,pins;
+    private ScrollView scrollbar;
+    private HorizontalScrollView storyView;
+    private TextView username,captions;
+    private SharedPreferences sp;
+    private CircleImageView dp;
+
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.after_login);
+        int initial = 0;
+
+        dialog = new Dialog(this);
+
+        scrollbar = findViewById(R.id.scrollbar);
+        storyView = findViewById(R.id.storyView);
+        username = findViewById(R.id.username);
+
+        myButton = findViewById(R.id.myButton);
+        upvote = findViewById(R.id.upvotegrey);
+        thoughts = findViewById(R.id.thoughts);
+        pins = findViewById(R.id.pins);
+        captions = findViewById(R.id.caption);
+        dp = findViewById(R.id.dp);
+
+        sp = getSharedPreferences("login",MODE_PRIVATE);
+
+        scrollbar.setVerticalScrollBarEnabled(false);
+        storyView.setHorizontalScrollBarEnabled(false);
+
+
+        upvote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                upvote.setAlpha(1f);
+                upvote.postDelayed(new Runnable() {
+                    public void run() {
+                        upvote.setAlpha(0.4f);
+
+                    }
+                }, 3000);
+
+                if(upvote.getDrawable().getConstantState()==getResources().getDrawable(R.drawable.upvoteblue).getConstantState()) {
+                    upvote.setImageResource(R.drawable.upvote);
+
+                }
+
+                else
+                    upvote.setImageResource(R.drawable.upvoteblue);
+
+            }
+        });
+
+        scrollbar.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+                username.setAlpha(1f);
+                upvote.setAlpha(1f);
+                thoughts.setAlpha(1f);
+                pins.setAlpha(1f);
+                captions.setAlpha(1f);
+                dp.setAlpha(1f);
+                username.postDelayed(new Runnable() {
+                    public void run() {
+                        username.setAlpha(0.4f);
+                        upvote.setAlpha(0.4f);
+                        thoughts.setAlpha(0.4f);
+                        pins.setAlpha(0.4f);
+                        captions.setAlpha(0.4f);
+                        dp.setAlpha(0.4f);
+                    }
+                }, 3000);
+            }
+        });
+
+
+        myButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openmyBox();
+
+                Button myprofile = (Button) dialog.findViewById(R.id.PersonalProfile);
+                Button updates = (Button) dialog.findViewById(R.id.Updates);
+                Button ping = (Button) dialog.findViewById(R.id.Ping);
+                Button arounyou = (Button) dialog.findViewById(R.id.Arounyou);
+                Button logout = (Button) dialog.findViewById(R.id.Logout);
+
+                myprofile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        openmyProfile();
+                    }
+                });
+
+                updates.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        openUpdates();
+                    }
+                });
+
+                ping.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        openPing();
+                    }
+                });
+
+                arounyou.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        openAroudYou();
+                    }
+                });
+
+                logout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        openLogoutbox();
+
+                        Button yes=(Button) dialog.findViewById(R.id.Yes);
+                        Button no=(Button) dialog.findViewById(R.id.No);
+
+                        yes.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                openLogout();
+                            }
+                        });
+
+                        no.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.dismiss();
+                            }
+                        });
+                    }
+                });
+
+                }
+        });
+
+    }
+
+    int counter = 0;
+
+    @Override
+    public void onBackPressed(){
+        counter++;
+
+        username.postDelayed(new Runnable() {
+                    public void run() {
+                        counter=0;
+                    }
+                }, 2000);
+
+        if (counter == 2){
+            super.onBackPressed();
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"Press again to Exit!!!",Toast. LENGTH_SHORT).show();
+        }
+    }
+
+    private void openmyBox() {
+
+        dialog.setContentView(R.layout.my_layout);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        BounceView.addAnimTo(dialog);
+        dialog.show();
+    }
+
+    private void openmyProfile() {
+        Intent intent = new Intent(this, Personal_profile.class);
+        startActivity(intent);
+        dialog.dismiss();
+    }
+
+    private void openUpdates(){
+        Intent intent = new Intent(this,Updates.class);
+        startActivity(intent);
+        dialog.dismiss();
+    }
+
+    private void openPing(){
+        Intent intent = new Intent(this,ping_something.class);
+        startActivity(intent);
+        dialog.dismiss();
+    }
+
+    private void openAroudYou(){
+        Intent intent = new Intent(this,Around_you.class);
+        startActivity(intent);
+        dialog.dismiss();
+    }
+
+    private void openLogoutbox(){
+        dialog.setContentView(R.layout.activity_logout);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        BounceView.addAnimTo(dialog);
+        dialog.show();
+    }
+
+    private void openLogout() {
+        sp.edit().putBoolean("logged",false).apply();
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+}
