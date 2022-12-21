@@ -1,0 +1,156 @@
+package com.snowchild.app;
+
+import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.github.hariprasanths.bounceview.BounceView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class Personal_profile extends AppCompatActivity {
+
+   private ImageView backbuttonicon,menuB,editB;
+   Dialog dialog;
+   private ProgressBar pb,pb1;
+   private TextView profileUN,poptext,fullname;
+   int counter = 0;
+   int counter1 = 0;
+   private FirebaseUser user;
+   private DatabaseReference reference;
+   private String UserId;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.personal_profile);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        UserId = user.getUid();
+
+        prog();
+
+        profileUN = findViewById(R.id.profileusername);
+        poptext = findViewById(R.id.popularity);
+        fullname = findViewById(R.id.fullname);
+
+        reference.child(UserId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Users userProfile = snapshot.getValue(Users.class);
+
+                profileUN.setText(userProfile.uname1);
+                fullname.setText(userProfile.fullname1);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        dialog = new Dialog(this);
+
+        editB = findViewById(R.id.edit_button);
+        editB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openeditmenu();
+            }
+        });
+
+        menuB = findViewById(R.id.menu_button);
+        menuB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openmenu();
+            }
+        });
+
+        backbuttonicon =  findViewById(R.id.backbuttonicon);
+        backbuttonicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goback();
+            }
+        });
+    }
+
+    public void openeditmenu(){
+        dialog.setContentView(R.layout.edit_menu);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        BounceView.addAnimTo(dialog);
+        dialog.show();
+
+    }
+
+    public void openmenu(){
+        dialog.setContentView(R.layout.menu_profile);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        BounceView.addAnimTo(dialog);
+        dialog.show();
+
+    }
+
+    public void prog(){
+        pb = (ProgressBar) findViewById(R.id.pbar);
+        pb1 = (ProgressBar) findViewById(R.id.pbar1);
+
+        final Timer t = new Timer();
+        TimerTask tt = new TimerTask() {
+            @Override
+            public void run() {
+                counter++;
+                pb.setProgress(counter);
+                if(counter==100)
+                {
+                    profileUN.setTextColor(getResources().getColor(R.color.officialblue));
+                    t.cancel();
+
+                    final Timer t1 = new Timer();
+                    TimerTask tt1 = new TimerTask() {
+                        @Override
+                        public void run() {
+                            counter1++;
+                            pb1.setProgress(counter1);
+                            if(counter1==100)
+                            {
+                                t1.cancel();
+                            }
+                        }
+                    };
+                    t1.schedule(tt1,0,70);
+                }
+
+            }
+        };
+        t.schedule(tt,0,50);
+    }
+
+    private void goback() {
+        Intent intent = new Intent(this,temp1.class);
+        startActivity(intent);
+        finish();
+    }
+}
