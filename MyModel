@@ -1,0 +1,48 @@
+package com.snowchild.app;
+
+public class myModel {
+    int dp,blur;
+    String name,caption;
+
+    public myModel(int dp, String name, String caption, int blur) {
+
+        this.dp = dp;
+        this.name = name;
+        this.caption = caption;
+        this.blur = blur;
+    }
+
+
+
+    public int getDp() {
+        return dp;
+    }
+
+    public void setDp(int dp) {
+        this.dp = dp;
+    }
+
+    public int getBlur() {
+        return blur;
+    }
+
+    public void setBlur(int blur) {
+        this.blur = blur;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCaption() {
+        return caption;
+    }
+
+    public void setCaption(String caption) {
+        this.caption = caption;
+    }
+}
