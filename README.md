@@ -16,6 +16,6 @@
 Welcome to SnowChild, a social media platform designed exclusively for creators who dare to dream and craft the extraordinary. At SnowChild, we believe in fostering a community where artistic expression knows no bounds, where creators connect, collaborate, and flourish without any intermediary barriers.
 </p>
 
-##A Canvas for Unrestricted Collaboration:
+## A Canvas for Unrestricted Collaboration:
 Snowchild provides a pristine canvas for creators to showcase their art and invites collaboration without the interference of third-party constraints. Whether you're a visual artist, musician, writer, or any form of creative mind, our platform is your stage to shine, share, and engage.
 
