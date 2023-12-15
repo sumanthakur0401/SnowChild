@@ -25,3 +25,21 @@ Break free from limitations as Snowchild enables creators to connect directly wi
 ### Engagement Beyond Boundaries:
 Snowchild encourages a dynamic and vibrant community where creators and art enthusiasts come together. Express your appreciation through upvotes, share your thoughts, and immerse yourself in a world where every creation is celebrated.
 
+### Key Features:
+<br/>
+<img src="https://sumanual.vercel.app/static/media/myButtonImg.e380868f5185b250031d.png" alt="myButton" width="100%"/>
+<br/>
+
+### My Button:
+"My Button" serves as your compass, simplifying the way you navigate through Snowchild. With a single click, unlock a world of possibilities as a sleek and unobtrusive box gracefully appears, ready to guide you effortlessly through every corner of the app.
+
+<br/>
+<img src="https://sumanual.vercel.app/static/media/popularBar.ce5c14059eaae155beec.png" alt="popular" width="100%"/>
+<br/>
+
+### Popularity Bar:
+The "Popularity Bar" is no ordinary loading bar; it's a fusion of algorithms that intelligently analyze upvotes, followers, thoughts, and collaborative endeavors. Each interaction propels the bar forward, painting a vivid picture of your evolving influence within the Snowchild ecosystem.
+
+<br/>
+<img src="https://sumanual.vercel.app/static/media/snowChildLogoYODB.a4a14fe27c40be47c7a4.png" alt="snow" width="100%"/>
+<br/>
