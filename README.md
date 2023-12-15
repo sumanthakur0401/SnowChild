@@ -9,5 +9,5 @@
 <p>
   The purpose of SnowChild is to help you engage with the people around the world without disclosing a space where a     user feels at home.
 </p>
-<img src="https://sumanual.vercel.app/static/media/snowchildColoAndTypo.7ff1dbf1fa1c5fa07014.png" alt="Your Name" width="150"/>
+<img src="https://sumanual.vercel.app/static/media/snowchildColoAndTypo.7ff1dbf1fa1c5fa07014.png" alt="Your Name" width="100%"/>
 
